@@ -1,0 +1,1 @@
+This repository contains sample code on how to use the [Flamingo framework](https://github.com/i-love-flamingo)
