@@ -11,19 +11,19 @@ type Module struct{}
 
 // Configure is the default Method a Module needs to implement
 func (m *Module) Configure(injector *dingo.Injector) {
-	// Call Bind helper of router Module
-	// It is a shortcut for: injector.BindMulti((*router.Module)(nil)).To(new(routes))
-	// So what it does is register our routes struct as a router Module - so that it is "known" to the router module
+	// Call Bind helper of router SessionsModule
+	// It is a shortcut for: injector.BindMulti((*router.SessionsModule)(nil)).To(new(routes))
+	// So what it does is register our routes struct as a router SessionsModule - so that it is "known" to the router module
 	web.BindRoutes(injector, new(routes))
 }
 
-// routes struct - our internal struct that gets the interface methods for router.Module
+// routes struct - our internal struct that gets the interface methods for router.SessionsModule
 type routes struct {
-	// helloController - we will defined routes that are handled by our HelloController - so we need this as a dependency
+	// helloController - we will defined routes that are handled by our SessionController - so we need this as a dependency
 	helloController *interfaces.HelloController
 }
 
-// Inject dependencies - this is called by Dingo and gets an initializes instance of the HelloController passed automatically
+// Inject dependencies - this is called by Dingo and gets an initializes instance of the SessionController passed automatically
 func (r *routes) Inject(controller *interfaces.HelloController) *routes {
 	r.helloController = controller
 
